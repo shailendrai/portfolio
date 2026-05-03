@@ -1,16 +1,32 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .home {
     background: #e9f1a7;
 }
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+
 }
 
 header {
     background-color: #333;
     color: white;
     padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#about {
+    display: flex;
+    justify-content: space-evenly;
+    background: rgb(239, 189, 189);
+    padding: 100px;
 }
 
 .home-sci a {
@@ -31,7 +47,7 @@ header {
 .home-sci a:hover {
     background: #0ef;
     color: #081b29;
-    box-sizing: 0 0 20px #0ef;
+    box-shadow: 0 0 20px #0ef;
 }
 
 .btn-box {
@@ -43,20 +59,21 @@ header {
     color: #081b29;
     letter-spacing: 1px;
     text-decoration: none;
-    font-size: 600;
+    font-weight: 600;
 }
 
 .btn-box:hover {
     box-shadow: 0 0 5px cyan,
-        0 0 25px cyan, 0 0 50px cyan,
-        0 0 10px, 0 0 20px cyan;
+        0 0 25px cyan,
+        0 0 50px cyan,
+        0 0 100px cyan;
 }
 
-.contalner1 {
-    width: 600px;
-    height: 500px;
-    padding: 75px 90px;
-    margin-left: 120px;
+.container1 {
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    padding: 50px 20px;
 }
 
 .heading1 {
@@ -67,42 +84,70 @@ header {
     margin-bottom: 50px;
 }
 
+.Technical-bars {
+    margin: 40px 0;
+}
+
 .bar {
-    font-size: 20px;
-    padding: 25px;
+    font-size: 18px;
+    padding: 30px;
 }
 
-.Technical-bar {
-    margin-top: 40px 0;
+.bar i {
+    font-size: 60px;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.Technical-bars .bar:first-child {
-    margin-top: 0;
-
-}
-
-.Technical-bars .bar:last-child {
-    margin-bottom: 0;
-}
-
-.Technical-bars .bar .info {
-    margin-bottom: 5px;
-}
-
-.Technical-bars .info span {
-    font-size: 17px;
+.info span {
     font-weight: 500;
-    animation: showtext 0.5s Is linear forwards;
-    opacity: 0;
 }
 
-.Technical-bar .bar .progress-line {
+/* Background bar */
+.progress-line {
     position: relative;
-    border-radius: 10px;
     width: 100%;
-    height: 5px;
-    background-color: #000000;
-    animation: animaate is is cubic-bezier(1, 0, 0, 5, 1);
+    height: 8px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Fill bar */
+.progress-line span {
+
+    display: block;
+    height: 100%;
+    background: #0ef;
+    border-radius: 10px;
+    width: 0;
+}
+
+/* Skill percentages */
+.progress-line.html span {
+    width: 90%;
+}
+
+.progress-line.css span {
+    width: 85%;
+}
+
+.progress-line.java span {
+    width: 75%;
+}
+
+.progress-line.javascript span {
+    width: 85%;
+}
+
+@keyframes fillBar {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: var(--width);
+    }
 }
 
 .contact_main {
@@ -118,11 +163,10 @@ header {
     gap: 3rem;
     padding-left: 30px;
     margin-top: 130px;
-
 }
 
 .contact-text h2 {
-    font-size: 90px;
+    font-size: 40px;
     line-height: 1;
     text-align: center;
 }
@@ -136,7 +180,6 @@ header {
     color: rgb(228, 228, 228);
     font-size: 20px;
     font-weight: 60;
-
 }
 
 .contact-text p {
@@ -144,11 +187,24 @@ header {
     font-size: 20px;
     line-height: 30px;
     margin-bottom: 2rem;
-
 }
 
 .contact-list {
     margin-bottom: 3rem;
+}
+.contact-icon i {
+    font-size: 30px;   
+}
+
+.contact_left i {
+    font-size: 22px;
+    margin-right: 8px;
+}
+
+.contact-icon a i:hover {
+    transform: scale(1.3);
+    transition: 0.3s;
+    color: #0ef;
 }
 
 nav ul {
@@ -168,7 +224,7 @@ nav ul li a {
 }
 
 section {
-    padding: 20px;
+    padding: 60px 20px;
     text-align: center;
 }
 
@@ -177,6 +233,7 @@ section {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
+
 }
 
 footer {
@@ -184,7 +241,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    position: relative;
     width: 100%;
     bottom: 0;
 }
@@ -204,81 +261,8 @@ form textarea {
     margin: 5px 0;
     padding: 10px;
     width: 80%;
-}
-
-form button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-section {
-    padding: 20px;
-    text-align: center;
-}
-
-#projects .project {
-    border: 1px solid #ccc;
-    margin: 10px;
-    padding: 10px;
     border-radius: 5px;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-form label {
-    margin: 5px 0;
-}
-
-form input,
-form textarea {
-    margin: 5px 0;
-    padding: 10px;
-    width: 80%;
+    border: 1px solid #ccc;
 }
 
 form button {
@@ -289,19 +273,58 @@ form button {
     cursor: pointer;
 }
 
+form button:hover {
+    background: #0ef;
+    color: black;
+}
 
-.skills_main{
+.skills_main {
     display: flex;
     justify-content: space-evenly;
 }
 
-.skills_left{
-
-}
-
-.skills_right{
-
-}
-.sub_title{
+.sub_title {
     text-align: center;
+}
+
+@media (max-width: 768px) {
+
+    /* About section */
+    #about {
+        flex-direction: column;
+        padding: 30px;
+        text-align: center;
+    }
+
+    /* Skills section */
+    .skills_main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Technical-bars {
+        width: 100%;
+    }
+
+    .bar {
+        padding: 15px;
+    }
+
+    /* Contact section */
+    .contact_main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Navigation */
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Home text */
+    .home-content h1 {
+        font-size: 22px;
+    }
 }
