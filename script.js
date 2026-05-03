@@ -1,28 +1,38 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+    // Contact Form
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    // Email validation pattern
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
 
-    // Check empty fields
-    if (!name || !email || !message) {
-        alert('Please fill in all fields.');
-        return;
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        if (!name || !email || !message) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        if (!email.match(emailPattern)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        alert(`Thank you for your message, ${name}!`);
+
+        document.getElementById('contactForm').reset();
+    });
+
+    // Navbar Toggle
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("nav-list");
+
+    if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+            nav.classList.toggle("active");
+        });
     }
 
-    // Validate email
-    if (!email.match(emailPattern)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-
-    // Success message
-    alert(`Thank you for your message, ${name}!`);
-
-    // Reset form after submission
-    document.getElementById('contactForm').reset();
 });
